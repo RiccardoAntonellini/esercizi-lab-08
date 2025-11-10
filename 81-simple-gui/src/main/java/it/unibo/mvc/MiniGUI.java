@@ -1,8 +1,11 @@
 package it.unibo.mvc;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -19,21 +22,27 @@ import java.util.Random;
  * applications.
  */
 public class MiniGUI {
-
     private static final String TITLE = "A very simple GUI application";
     private static final int PROPORTION = 5;
     private final Random randomGenerator = new Random();
     private final JFrame frame = new JFrame(TITLE);
-
     /**
      * Creates a new {@link MiniGUI}.
      */
+
     public MiniGUI() {
         final JPanel canvas = new JPanel();
         canvas.setLayout(new BorderLayout());
+        final JPanel horizontalPanel = new JPanel();
+        horizontalPanel.setLayout(new BoxLayout(horizontalPanel, BoxLayout.Y_AXIS));
         final JButton write = new JButton("Print a random number on standard output");
         canvas.add(write, BorderLayout.CENTER);
+        final JTextField result = new JTextField();
+        horizontalPanel.add(result, BorderLayout.NORTH);
+        horizontalPanel.add(write, BorderLayout.CENTER);
+        canvas.add(horizontalPanel, BorderLayout.CENTER);
         frame.setContentPane(canvas);
+        frame.setContentPane(horizontalPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         /*
          * Handlers
@@ -41,7 +50,8 @@ public class MiniGUI {
         write.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
-                System.out.println(randomGenerator.nextInt());
+                final String text = Integer.toString(randomGenerator.nextInt());
+                result.setText(text);
             }
         });
     }
@@ -85,5 +95,4 @@ public class MiniGUI {
     public static void main(final String... args) {
         new MiniGUI().display();
     }
-
 }
