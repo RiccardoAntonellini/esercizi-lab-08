@@ -24,7 +24,7 @@ Use the *Test-Driven Development (TDD)* methodology to develop the following.
       * set the cause of death to "karting accident"
       * verify that the cause of death has been set correctly (returned true, and the cause is indeed "karting accident")
       * sleep for 100ms
-      * try to change the cause of death 
+      * try to change the cause of death
       * verify that the cause of death has not been changed
    5. After writing the cause of death, details of the death should be written in the next 6 seconds and 40 milliseconds of writing the death's cause.
       * check that writing the death details before writing a name throws the correct exception
